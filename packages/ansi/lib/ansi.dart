@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'dart:math';
-
 const _kEscape = '\x1B[';
 class Ansi {
 
