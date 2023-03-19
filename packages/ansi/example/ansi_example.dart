@@ -4,5 +4,5 @@ void main() {
   print(ansi.blue('Hello world!'));
 
   // Combine styled and normal strings
-  print('${ansi.blue('Hello')} World${ansi.red('!')}');
+  print(ansi.bgWhite('${ansi.blue('Hello')} World${ansi.red('!')}'));
 }

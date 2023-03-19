@@ -7,6 +7,9 @@ repository: https://github.com/hyiso/ansi/tree/main/packages/ansi
 environment:
   sdk: '>=2.12.0 <3.0.0'
 
+dependencies:
+  ansi_codes: ^0.1.0
+
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.16.0

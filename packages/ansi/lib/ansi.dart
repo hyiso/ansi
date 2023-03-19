@@ -1,6 +1,6 @@
 import 'dart:io';
 
-const _kEscape = '\x1B[';
+import 'package:ansi_codes/ansi_codes.dart';
 
 ///
 /// Ansi class
@@ -11,32 +11,58 @@ class Ansi {
 
   Ansi({this.supportAnsi = true});
 
-  String reset() => _code(0);
-  String bold(String text) => '${_code(1)}$text${reset()}';
-  String dim(String text) => '${_code(2)}$text${reset()}';
-  String italic(String text) => '${_code(3)}$text${reset()}';
-  String underline(String text) => '${_code(4)}$text${reset()}';
-  String inverse(String text) => '${_code(7)}$text${reset()}';
+  String reset(String text) => _style(text: text, code: ansiCodes.reset);
+  String bold(String text) => _style(text: text, code: ansiCodes.bold);
+  String dim(String text) => _style(text: text, code: ansiCodes.dim);
+  String italic(String text) => _style(text: text, code: ansiCodes.italic);
+  String underline(String text) => _style(text: text, code: ansiCodes.underline);
+  String inverse(String text) => _style(text: text, code: ansiCodes.inverse);
+  String hidden(String text) => _style(text: text, code: ansiCodes.hidden);
+  String strikeThrough(String text) => _style(text: text, code: ansiCodes.strikeThrough);
 
-  String black(String text) => '${_code(30)}$text${reset()}';
-  String red(String text) => '${_code(31)}$text${reset()}';
-  String green(String text) => '${_code(32)}$text${reset()}';
-  String yellow(String text) => '${_code(33)}$text${reset()}';
-  String blue(String text) => '${_code(34)}$text${reset()}';
-  String magenta(String text) => '${_code(35)}$text${reset()}';
-  String cyan(String text) => '${_code(36)}$text${reset()}';
-  String white(String text) => '${_code(37)}$text${reset()}';
+  String black(String text) => _style(text: text, code: ansiCodes.black);
+  String red(String text) => _style(text: text, code: ansiCodes.red);
+  String green(String text) => _style(text: text, code: ansiCodes.green);
+  String yellow(String text) => _style(text: text, code: ansiCodes.yellow);
+  String blue(String text) => _style(text: text, code: ansiCodes.blue);
+  String magenta(String text) => _style(text: text, code: ansiCodes.magenta);
+  String cyan(String text) => _style(text: text, code: ansiCodes.cyan);
+  String white(String text) => _style(text: text, code: ansiCodes.white);
+  String blackBright(String text) => _style(text: text, code: ansiCodes.blackBright);
+  String redBright(String text) => _style(text: text, code: ansiCodes.redBright);
+  String greenBright(String text) => _style(text: text, code: ansiCodes.greenBright);
+  String yellowBright(String text) => _style(text: text, code: ansiCodes.yellowBright);
+  String blueBright(String text) => _style(text: text, code: ansiCodes.blueBright);
+  String magentaBright(String text) => _style(text: text, code: ansiCodes.magentaBright);
+  String cyanBright(String text) => _style(text: text, code: ansiCodes.cyanBright);
+  String whiteBright(String text) => _style(text: text, code: ansiCodes.whiteBright);
+  String grey(String text) => _style(text: text, code: ansiCodes.grey);
+  String gray(String text) => _style(text: text, code: ansiCodes.gray);
 
-  String bgBlack(String text) => '${_code(40)}$text${reset()}';
-  String bgRed(String text) => '${_code(41)}$text${reset()}';
-  String bgGreen(String text) => '${_code(42)}$text${reset()}';
-  String bgYellow(String text) => '${_code(43)}$text${reset()}';
-  String bgBlue(String text) => '${_code(44)}$text${reset()}';
-  String bgMagenta(String text) => '${_code(45)}$text${reset()}';
-  String bgCyan(String text) => '${_code(46)}$text${reset()}';
-  String bgWhite(String text) => '${_code(47)}$text${reset()}';
+  String bgBlack(String text) => _style(text: text, code: ansiCodes.bgBlack);
+  String bgRed(String text) => _style(text: text, code: ansiCodes.bgRed);
+  String bgGreen(String text) => _style(text: text, code: ansiCodes.bgGreen);
+  String bgYellow(String text) => _style(text: text, code: ansiCodes.bgYellow);
+  String bgBlue(String text) => _style(text: text, code: ansiCodes.bgBlue);
+  String bgMagenta(String text) => _style(text: text, code: ansiCodes.bgMagenta);
+  String bgCyan(String text) => _style(text: text, code: ansiCodes.bgCyan);
+  String bgWhite(String text) => _style(text: text, code: ansiCodes.bgWhite);
+  String bgBlackBright(String text) => _style(text: text, code: ansiCodes.bgBlackBright);
+  String bgRedBright(String text) => _style(text: text, code: ansiCodes.bgRedBright);
+  String bgGreenBright(String text) => _style(text: text, code: ansiCodes.bgGreenBright);
+  String bgYellowBright(String text) => _style(text: text, code: ansiCodes.bgYellowBright);
+  String bgBlueBright(String text) => _style(text: text, code: ansiCodes.bgBlueBright);
+  String bgMagentaBright(String text) => _style(text: text, code: ansiCodes.bgMagentaBright);
+  String bgCyanBright(String text) => _style(text: text, code: ansiCodes.bgCyanBright);
+  String bgWhiteBright(String text) => _style(text: text, code: ansiCodes.bgWhiteBright);
 
-  String _code(int code) => supportAnsi ? '$_kEscape${code}m' : '';
+  String _style({required String text, required AnsiCode code}) {
+    return [
+      if (supportAnsi) code.open,
+      text,
+      if (supportAnsi) code.close,
+    ].join('');
+  }
 }
 
 ///
