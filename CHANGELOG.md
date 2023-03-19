@@ -11,6 +11,27 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 Packages with breaking changes:
 
+ - [`ansi` - `v0.2.0`](#ansi---v020)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `ansi` - `v0.2.0`
+
+ - **BREAKING** **FEAT**(ansi): depends on `ansi_codes`. ([c49cf0ec](https://github.com/hyiso/ansi/commit/c49cf0ecbc576eff4ec84c704df4325286930495))
+
+
+## 2023-03-19
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
  - There are no breaking changes in this release.
 
 Packages with other changes:
