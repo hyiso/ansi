@@ -1,6 +1,6 @@
 name: ansi
 description: Ansi utilities package to handle string with ansi characters.
-version: 0.0.1
+version: 0.1.0
 homepage: https://github.com/hyiso/ansi
 
 environment:

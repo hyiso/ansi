@@ -1,6 +1,29 @@
-# Ansi
+# ansi
 
-Ansi utilities package to handle string with ansi characters.
+> Terminal string styling done right
 
-## Features
-- In active development
+![](media/screenshot.png)
+
+<br>
+
+---
+
+## Install
+
+```bash
+npm install ansi
+```
+
+## Usage
+
+```dart
+import 'package:ansi/ansi.dart';
+
+void main() {
+  print(ansi.blue('Hello world!'));
+
+  // Combine styled and normal strings
+  print('${ansi.blue('Hello')} World${ansi.red('!')}');
+}
+
+```
