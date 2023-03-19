@@ -1,7 +1,8 @@
 name: ansi
-description: Ansi utilities package to handle string with ansi characters.
+description: Terminal string styling done right.
 version: 0.1.0
 homepage: https://github.com/hyiso/ansi
+repository: https://github.com/hyiso/ansi/tree/main/packages/ansi
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

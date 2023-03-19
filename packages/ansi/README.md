@@ -2,16 +2,14 @@
 
 > Terminal string styling done right
 
-![](media/screenshot.png)
+![](https://raw.githubusercontent.com/chalk/chalk/main/media/screenshot.png)
 
 <br>
-
----
 
 ## Install
 
 ```bash
-npm install ansi
+dart pub add ansi
 ```
 
 ## Usage
