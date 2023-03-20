@@ -1,3 +1,7 @@
+## 0.2.1
+
+ - Fix multi line text style and compound styles.
+
 ## 0.2.0
 
 > Note: This release has breaking changes.

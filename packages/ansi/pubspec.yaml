@@ -1,6 +1,6 @@
 name: ansi
 description: Terminal string styling done right.
-version: 0.2.0
+version: 0.2.1
 homepage: https://github.com/hyiso/ansi
 repository: https://github.com/hyiso/ansi/tree/main/packages/ansi
 
