@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ansi/src/utils.dart';
 import 'package:ansi_codes/ansi_codes.dart';
 
 ///
@@ -57,10 +58,18 @@ class Ansi {
   String bgWhiteBright(String text) => _style(text: text, code: ansiCodes.bgWhiteBright);
 
   String _style({required String text, required AnsiCode code}) {
+    if (!supportAnsi) return text;
+    if (text.contains('\u001B')) {
+      text = stringReplaceAll(text, code.close, code.open);
+    }
+    int index = text.indexOf('\n');
+    if (index != -1) {
+      text = stringEncaseCRLFWithFirstIndex(text, code.close, code.open, index);
+    }
     return [
-      if (supportAnsi) code.open,
+      code.open,
       text,
-      if (supportAnsi) code.close,
+      code.close,
     ].join('');
   }
 }
