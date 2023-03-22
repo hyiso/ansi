@@ -7,5 +7,4 @@ void main() {
     expect(ansi.red('foo'), '\u001B[31mfoo\u001B[39m');
     expect(ansi.bgRed('foo'), '\u001B[41mfoo\u001B[49m');
   });
-
 }

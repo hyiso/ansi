@@ -7,9 +7,11 @@ class AnsiCode {
   final List<int> codes;
   final int offset;
 
-  AnsiCode(int open, int close, {
+  AnsiCode(
+    int open,
+    int close, {
     this.offset = 0,
-  }): codes = List.unmodifiable([open, close]) {
+  }) : codes = List.unmodifiable([open, close]) {
     _codes[open] = close;
   }
 
@@ -19,8 +21,8 @@ class AnsiCode {
 }
 
 class AnsiCodes {
-
   AnsiCodes();
+
   /// Modifiers
   final AnsiCode reset = AnsiCode(0, 0);
   final AnsiCode bold = AnsiCode(1, 22);
@@ -31,7 +33,7 @@ class AnsiCodes {
   final AnsiCode inverse = AnsiCode(7, 27);
   final AnsiCode hidden = AnsiCode(8, 28);
   final AnsiCode strikeThrough = AnsiCode(9, 29);
-  
+
   /// Colors
   final AnsiCode black = AnsiCode(30, _kColorClose);
   final AnsiCode red = AnsiCode(31, _kColorClose);
@@ -54,7 +56,7 @@ class AnsiCodes {
   /// Color Alias
   AnsiCode get gray => blackBright;
   AnsiCode get grey => blackBright;
-  
+
   /// Background Colors
   final AnsiCode bgBlack = AnsiCode(40, _kBgColorClose);
   final AnsiCode bgRed = AnsiCode(41, _kBgColorClose);
@@ -77,4 +79,4 @@ class AnsiCodes {
   int? operator [](int? open) => _codes[open];
 }
 
-final ansiCodes =  AnsiCodes();
+final ansiCodes = AnsiCodes();

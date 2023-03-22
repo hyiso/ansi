@@ -7,15 +7,18 @@ void main() {
   print(ansiRegex().hasMatch('cake'));
   //=> false
 
-  print(ansiRegex().allMatches('\u001B[4mcake\u001B[0m')
-    .map((match) => match.group(0)));
+  print(ansiRegex()
+      .allMatches('\u001B[4mcake\u001B[0m')
+      .map((match) => match.group(0)));
   //=> ['\u001B[4m', '\u001B[0m']
 
-  print(ansiRegex().allMatches('\u001B[4mcake\u001B[0m')
-    .map((match) => match.group(0)));
+  print(ansiRegex()
+      .allMatches('\u001B[4mcake\u001B[0m')
+      .map((match) => match.group(0)));
   //=> ['\u001B[4m']
 
-  print(ansiRegex().allMatches('\u001B]8;;https://github.com\u0007click\u001B]8;;\u0007')
-    .map((match) => match.group(0)));
+  print(ansiRegex()
+      .allMatches('\u001B]8;;https://github.com\u0007click\u001B]8;;\u0007')
+      .map((match) => match.group(0)));
   //=> ['\u001B]8;;https://github.com\u0007', '\u001B]8;;\u0007']
 }

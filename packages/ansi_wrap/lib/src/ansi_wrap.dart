@@ -4,8 +4,8 @@ import 'package:characters/characters.dart';
 import 'package:string_width/string_width.dart';
 
 final _kEscapes = {
-	'\u001B',
-	'\u009B',
+  '\u001B',
+  '\u009B',
 };
 const _kEndCode = 39;
 const _kAnsiEscapeBell = '\u0007';
@@ -21,6 +21,7 @@ String wrapAnsiCode(int code) {
   String escape = iterator.current;
   return '$escape$_kAnsiCsi$code$_AnsiSgrTerminator';
 }
+
 String wrapAnsiHyperlink(String uri) {
   final iterator = _kEscapes.iterator;
   iterator.moveNext();
@@ -30,79 +31,81 @@ String wrapAnsiHyperlink(String uri) {
 
 // Calculate the length of words split on ' ', ignoring
 // the extra characters added by ansi escape codes
-Iterable<int> wordLengths(String text) => text.split(' ').map((character) => stringWidth(character));
+Iterable<int> wordLengths(String text) =>
+    text.split(' ').map((character) => stringWidth(character));
 
 // Wrap a long word across multiple rows
 // Ansi escape codes do not count towards length
 void wrapWord(List<String> rows, String word, columns) {
-	final characters = word.characters;
+  final characters = word.characters;
 
-	bool isInsideEscape = false;
-	bool isInsideLinkEscape = false;
-	int visible = stringWidth(stripAnsi(rows.last));
+  bool isInsideEscape = false;
+  bool isInsideLinkEscape = false;
+  int visible = stringWidth(stripAnsi(rows.last));
 
-	for (var i = 0; i < characters.length; i++) {
+  for (var i = 0; i < characters.length; i++) {
     final character = characters.elementAt(i);
-		final characterLength = stringWidth(character);
+    final characterLength = stringWidth(character);
 
-		if (visible + characterLength <= columns) {
-			rows.last += character;
-		} else {
-			rows.add(character);
-			visible = 0;
-		}
+    if (visible + characterLength <= columns) {
+      rows.last += character;
+    } else {
+      rows.add(character);
+      visible = 0;
+    }
 
-		if (_kEscapes.contains(character)) {
-			isInsideEscape = true;
-			isInsideLinkEscape = characters.getRange(i + 1).join('').startsWith(_kAnsiEscapeLink);
-		}
+    if (_kEscapes.contains(character)) {
+      isInsideEscape = true;
+      isInsideLinkEscape =
+          characters.getRange(i + 1).join('').startsWith(_kAnsiEscapeLink);
+    }
 
-		if (isInsideEscape) {
-			if (isInsideLinkEscape) {
-				if (character == _kAnsiEscapeBell) {
-					isInsideEscape = false;
-					isInsideLinkEscape = false;
-				}
-			} else if (character == _AnsiSgrTerminator) {
-				isInsideEscape = false;
-			}
+    if (isInsideEscape) {
+      if (isInsideLinkEscape) {
+        if (character == _kAnsiEscapeBell) {
+          isInsideEscape = false;
+          isInsideLinkEscape = false;
+        }
+      } else if (character == _AnsiSgrTerminator) {
+        isInsideEscape = false;
+      }
 
-			continue;
-		}
+      continue;
+    }
 
-		visible += characterLength;
+    visible += characterLength;
 
-		if (visible == columns && i < characters.length - 1) {
-			rows.add('');
-			visible = 0;
-		}
-	}
+    if (visible == columns && i < characters.length - 1) {
+      rows.add('');
+      visible = 0;
+    }
+  }
 
-	// It's possible that the last row we copy over is only
-	// ansi escape characters, handle this edge-case
-	if (visible < 1 && rows.last.isNotEmpty && rows.length > 1) {
-		rows[rows.length - 2] += rows.removeLast();
-	}
+  // It's possible that the last row we copy over is only
+  // ansi escape characters, handle this edge-case
+  if (visible < 1 && rows.last.isNotEmpty && rows.length > 1) {
+    rows[rows.length - 2] += rows.removeLast();
+  }
 }
 
 // Trims spaces from a string ignoring invisible sequences
 String stringVisibleTrimSpacesRight(String string) {
-	final words = string.split(' ');
-	int last = words.length;
+  final words = string.split(' ');
+  int last = words.length;
 
-	while (last > 0) {
-		if (stringWidth(words[last - 1]) > 0) {
-			break;
-		}
+  while (last > 0) {
+    if (stringWidth(words[last - 1]) > 0) {
+      break;
+    }
 
-		last--;
-	}
+    last--;
+  }
 
-	if (last == words.length) {
-		return string;
-	}
+  if (last == words.length) {
+    return string;
+  }
 
-	return words.sublist(0, last).join(' ') + words.sublist(last).join('');
+  return words.sublist(0, last).join(' ') + words.sublist(last).join('');
 }
 
 // The wrapAnsi() can be invoked in either 'hard' or 'soft' wrap mode
@@ -110,113 +113,118 @@ String stringVisibleTrimSpacesRight(String string) {
 // 'hard' will never allow a string to take up more than columns characters
 //
 // 'soft' allows long words to expand past the column length
-String wrap(String string, int columns, {
+String wrap(
+  String string,
+  int columns, {
   bool? trim,
   bool? wordWrap,
   bool hard = false,
 }) {
-	if (trim != false && string.trim().isEmpty) {
-		return '';
-	}
+  if (trim != false && string.trim().isEmpty) {
+    return '';
+  }
 
-	String returnValue = '';
-	int? escapeCode;
-	String? escapeUrl;
+  String returnValue = '';
+  int? escapeCode;
+  String? escapeUrl;
 
-	final lengths = wordLengths(string);
-	var rows = [''];
+  final lengths = wordLengths(string);
+  var rows = [''];
   final words = string.split(' ');
 
-	for (var i = 0; i < words.length; i++) {
-		if (trim != false) {
-			rows.last = rows.last.trimLeft();
-		}
+  for (var i = 0; i < words.length; i++) {
+    if (trim != false) {
+      rows.last = rows.last.trimLeft();
+    }
 
-		int rowLength = stringWidth(rows.last);
+    int rowLength = stringWidth(rows.last);
 
-		if (i != 0) {
-			if (rowLength >= columns && (wordWrap == false || trim == false)) {
-				// If we start with a new word but the current row length equals the length of the columns, add a new row
-				rows.add('');
-				rowLength = 0;
-			}
+    if (i != 0) {
+      if (rowLength >= columns && (wordWrap == false || trim == false)) {
+        // If we start with a new word but the current row length equals the length of the columns, add a new row
+        rows.add('');
+        rowLength = 0;
+      }
 
-			if (rowLength > 0 || trim == false) {
-				rows.last += ' ';
-				rowLength++;
-			}
-		}
+      if (rowLength > 0 || trim == false) {
+        rows.last += ' ';
+        rowLength++;
+      }
+    }
 
-		// In 'hard' wrap mode, the length of a line is never allowed to extend past 'columns'
+    // In 'hard' wrap mode, the length of a line is never allowed to extend past 'columns'
     final length = lengths.elementAt(i);
-		if (hard && length > columns) {
-			final remainingColumns = (columns - rowLength);
-			final breaksStartingThisLine = 1 + ((length - remainingColumns - 1) / columns).floor();
-			final breaksStartingNextLine = ((length - 1) / columns).floor();
-			if (breaksStartingNextLine < breaksStartingThisLine) {
-				rows.add('');
-			}
+    if (hard && length > columns) {
+      final remainingColumns = (columns - rowLength);
+      final breaksStartingThisLine =
+          1 + ((length - remainingColumns - 1) / columns).floor();
+      final breaksStartingNextLine = ((length - 1) / columns).floor();
+      if (breaksStartingNextLine < breaksStartingThisLine) {
+        rows.add('');
+      }
 
-			wrapWord(rows, words[i], columns);
-			continue;
-		}
+      wrapWord(rows, words[i], columns);
+      continue;
+    }
 
-		if (rowLength + length > columns && rowLength > 0 && length > 0) {
-			if (wordWrap == false && rowLength < columns) {
-				wrapWord(rows, words[i], columns);
-				continue;
-			}
+    if (rowLength + length > columns && rowLength > 0 && length > 0) {
+      if (wordWrap == false && rowLength < columns) {
+        wrapWord(rows, words[i], columns);
+        continue;
+      }
 
-			rows.add('');
-		}
+      rows.add('');
+    }
 
-		if (rowLength + length > columns && wordWrap == false) {
-			wrapWord(rows, words[i], columns);
-			continue;
-		}
+    if (rowLength + length > columns && wordWrap == false) {
+      wrapWord(rows, words[i], columns);
+      continue;
+    }
 
-		rows.last += words[i];
-	}
+    rows.last += words[i];
+  }
 
-	if (trim != false) {
-		rows = rows.map((row) => stringVisibleTrimSpacesRight(row)).toList();
-	}
+  if (trim != false) {
+    rows = rows.map((row) => stringVisibleTrimSpacesRight(row)).toList();
+  }
 
-	final pre = rows.join('\n').characters;
+  final pre = rows.join('\n').characters;
 
-	for (var index = 0; index < pre.length; index++) {
+  for (var index = 0; index < pre.length; index++) {
     final character = pre.elementAt(index);
-		returnValue += character;
+    returnValue += character;
 
-		if (_kEscapes.contains(character)) {
-			final groups = RegExp('(?:\\$_kAnsiCsi(?<code>\\d+)m|\\$_kAnsiEscapeLink(?<uri>.*)$_kAnsiEscapeBell)').firstMatch(pre.getRange(index).join(''));
-			if (groups?[1] != null) {
-				final code = int.tryParse(groups![1]!);
-				escapeCode = code == _kEndCode ? null : code;
-			} else if (groups?[2] != null) {
-				escapeUrl = groups?[2]?.isEmpty == true ? null : groups?[2];
-			}
-		}
+    if (_kEscapes.contains(character)) {
+      final groups = RegExp(
+              '(?:\\$_kAnsiCsi(?<code>\\d+)m|\\$_kAnsiEscapeLink(?<uri>.*)$_kAnsiEscapeBell)')
+          .firstMatch(pre.getRange(index).join(''));
+      if (groups?[1] != null) {
+        final code = int.tryParse(groups![1]!);
+        escapeCode = code == _kEndCode ? null : code;
+      } else if (groups?[2] != null) {
+        escapeUrl = groups?[2]?.isEmpty == true ? null : groups?[2];
+      }
+    }
 
-		final code = ansiCodes[escapeCode];
-		if (index < pre.length - 1 && pre.elementAt(index + 1) == '\n') {
-			if (escapeUrl != null) {
-				returnValue += wrapAnsiHyperlink('');
-			}
+    final code = ansiCodes[escapeCode];
+    if (index < pre.length - 1 && pre.elementAt(index + 1) == '\n') {
+      if (escapeUrl != null) {
+        returnValue += wrapAnsiHyperlink('');
+      }
 
-			if (escapeCode != null && code != null) {
-				returnValue += wrapAnsiCode(code);
-			}
-		} else if (character == '\n') {
-			if (escapeCode != null && code != null) {
-				returnValue += wrapAnsiCode(escapeCode);
-			}
+      if (escapeCode != null && code != null) {
+        returnValue += wrapAnsiCode(code);
+      }
+    } else if (character == '\n') {
+      if (escapeCode != null && code != null) {
+        returnValue += wrapAnsiCode(escapeCode);
+      }
 
-			if (escapeUrl != null) {
-				returnValue += wrapAnsiHyperlink(escapeUrl);
-			}
-		}
-	}
+      if (escapeUrl != null) {
+        returnValue += wrapAnsiHyperlink(escapeUrl);
+      }
+    }
+  }
 
-	return returnValue;
+  return returnValue;
 }

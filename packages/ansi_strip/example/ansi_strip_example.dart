@@ -1,7 +1,6 @@
 import 'package:ansi_strip/ansi_strip.dart';
 
 void main() {
-
   print(stripAnsi('\u001B[4mUnicorn\u001B[0m'));
   //=> 'Unicorn'
 
