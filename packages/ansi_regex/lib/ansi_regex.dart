@@ -1,9 +1,8 @@
-
 ///
 /// Regular expression for matching ANSI escape codes
-/// 
+///
 /// Support [multiLine] parameter.
-/// 
+///
 RegExp ansiRegex({bool multiLine = false}) {
   return RegExp(
     [
