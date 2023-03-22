@@ -1,6 +1,6 @@
 name: ansi_strip
 description: Strip ANSI escape codes from a string
-version: 0.1.1
+version: 0.1.1+1
 homepage: https://github.com/hyiso/ansi
 repository: https://github.com/hyiso/ansi/tree/main/packages/ansi_strip
 
@@ -8,7 +8,7 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  ansi_regex: ^0.1.1
+  ansi_regex: ^0.1.2
 
 dev_dependencies:
   lints: ^2.0.0

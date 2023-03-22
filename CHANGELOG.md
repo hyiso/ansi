@@ -15,6 +15,36 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`ansi_regex` - `v0.1.2`](#ansi_regex---v012)
+ - [`ansi_strip` - `v0.1.1+1`](#ansi_strip---v0111)
+ - [`ansi_wrap` - `v0.1.2+1`](#ansi_wrap---v0121)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `ansi_strip` - `v0.1.1+1`
+ - `ansi_wrap` - `v0.1.2+1`
+
+---
+
+#### `ansi_regex` - `v0.1.2`
+
+ - **FEAT**: support `multiLine` parameter, expand regex and add test. ([dae5aae5](https://github.com/hyiso/ansi/commit/dae5aae505de4468db4252a66ec32d5964cc04b7))
+
+
+## 2023-03-22
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
  - [`ansi` - `v0.2.2`](#ansi---v022)
  - [`ansi_codes` - `v0.1.1`](#ansi_codes---v011)
  - [`ansi_regex` - `v0.1.1`](#ansi_regex---v011)
