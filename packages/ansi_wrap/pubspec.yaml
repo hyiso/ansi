@@ -11,7 +11,7 @@ dependencies:
   ansi_codes: ^0.1.0
   ansi_strip: ^0.1.0
   characters: ^1.2.1
-  string_width: ^0.1.0
+  string_width: ^0.1.2
 
 dev_dependencies:
   ansi: ^0.2.0
