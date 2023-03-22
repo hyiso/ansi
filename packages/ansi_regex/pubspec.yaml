@@ -1,6 +1,6 @@
 name: ansi_regex
 description: Regular expression for matching ANSI escape codes.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/hyiso/ansi
 repository: https://github.com/hyiso/ansi/tree/main/packages/ansi_regex
 

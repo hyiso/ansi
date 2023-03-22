@@ -1,6 +1,6 @@
 name: ansi_slice
 description: Slice a string with ANSI escape codes.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/hyiso/ansi
 repository: https://github.com/hyiso/ansi/tree/main/packages/ansi_slice
 
@@ -11,6 +11,6 @@ environment:
 #   path: ^1.8.0
 
 dev_dependencies:
-  ansi: ^0.2.0
+  ansi: ^0.2.2
   lints: ^2.0.0
   test: ^1.16.0
