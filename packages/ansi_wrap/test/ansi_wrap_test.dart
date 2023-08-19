@@ -8,7 +8,7 @@ bool hasAnsi(String text) => ansiRegex().hasMatch(text);
 
 void main() {
   final fixture =
-      'The quick brown ${ansi.red('fox jumped over ')}the lazy ${ansi.green('dog and then ran away with the unicorn.')}';
+      'The quick brown ${red('fox jumped over ')}the lazy ${green('dog and then ran away with the unicorn.')}';
   final fixture2 = '12345678\n901234567890';
   final fixture3 = '12345678\n901234567890 12345';
   final fixture4 = '12345678\n';
@@ -41,8 +41,7 @@ void main() {
   });
 
   test('handles colored string that wraps on to multiple lines', () {
-    final result =
-        wrapAnsi('${ansi.green('hello world')} hey!', 5, hard: false);
+    final result = wrapAnsi('${green('hello world')} hey!', 5, hard: false);
     final lines = result.split('\n');
     expect(true, hasAnsi(lines[0]));
     expect(true, hasAnsi(lines[1]));
@@ -50,7 +49,7 @@ void main() {
   });
 
   test('does not prepend newline if first string is greater than "cols"', () {
-    final result = wrapAnsi('${ansi.green('hello')}-world', 5, hard: false);
+    final result = wrapAnsi('${green('hello')}-world', 5, hard: false);
     expect(result.split('\n').length, 1);
   });
 
@@ -66,12 +65,12 @@ void main() {
   });
 
   test('removes last row if it contained only ansi escape codes', () {
-    final result = wrapAnsi(ansi.green('helloworld'), 2, hard: true);
+    final result = wrapAnsi(green('helloworld'), 2, hard: true);
     expect(true, stripAnsi(result).split('\n').every((x) => x.length == 2));
   });
 
   test('does not prepend newline if first word is split', () {
-    final result = wrapAnsi('${ansi.green('hello')}world', 5, hard: true);
+    final result = wrapAnsi('${green('hello')}world', 5, hard: true);
     expect(result.split('\n').length, 2);
   });
 
@@ -140,10 +139,10 @@ void main() {
   test(
       '#24, trims leading and trailing whitespace inside a color block only on actual wrapped lines and only with trimming',
       () {
-    expect(wrapAnsi(ansi.blue('   foo   bar   '), 6), ansi.blue('foo\nbar'));
-    expect(wrapAnsi(ansi.blue('   foo   bar   '), 42), ansi.blue('foo   bar'));
-    expect(wrapAnsi(ansi.blue('   foo   bar   '), 42, trim: false),
-        ansi.blue('   foo   bar   '));
+    expect(wrapAnsi(blue('   foo   bar   '), 6), blue('foo\nbar'));
+    expect(wrapAnsi(blue('   foo   bar   '), 42), blue('foo   bar'));
+    expect(wrapAnsi(blue('   foo   bar   '), 42, trim: false),
+        blue('   foo   bar   '));
   });
 
   test('#25, properly wraps whitespace between words with no trimming', () {
@@ -160,12 +159,12 @@ void main() {
 
   test('#27, does not remove spaces in line with ansi escapes when no trimming',
       () {
-    expect(wrapAnsi(ansi.bgGreen(' ${ansi.black('OK')} '), 100, trim: false),
-        ansi.bgGreen(' ${ansi.black('OK')} '));
-    expect(wrapAnsi(ansi.bgGreen('  ${ansi.black('OK')} '), 100, trim: false),
-        ansi.bgGreen('  ${ansi.black('OK')} '));
-    expect(wrapAnsi(ansi.bgGreen(' hello '), 10, hard: true, trim: false),
-        ansi.bgGreen(' hello '));
+    expect(wrapAnsi(bgGreen(' ${black('OK')} '), 100, trim: false),
+        bgGreen(' ${black('OK')} '));
+    expect(wrapAnsi(bgGreen('  ${black('OK')} '), 100, trim: false),
+        bgGreen('  ${black('OK')} '));
+    expect(wrapAnsi(bgGreen(' hello '), 10, hard: true, trim: false),
+        bgGreen(' hello '));
   });
 
   test('#35, wraps hyperlinks, preserving clickability in supporting terminals',
@@ -178,7 +177,7 @@ void main() {
         'Check out \u001B]8;;https://www.example.com\u0007my\u001B]8;;\u0007\n\u001B]8;;https://www.example.com\u0007website\u001B]8;;\u0007, it is\n\u001B]8;;https://www.example.com\u0007supercalifragili\u001B]8;;\u0007\n\u001B]8;;https://www.example.com\u0007sticexpialidocio\u001B]8;;\u0007\n\u001B]8;;https://www.example.com\u0007us\u001B]8;;\u0007.');
 
     final result2 = wrapAnsi(
-        'Check out \u001B]8;;https://www.example.com\u0007my \uD83C\uDE00 ${ansi.bgGreen('website')}\u001B]8;;\u0007, it ${ansi.bgRed('is \u001B]8;;https://www.example.com\u0007super\uD83C\uDE00califragilisticexpialidocious\u001B]8;;\u0007')}.',
+        'Check out \u001B]8;;https://www.example.com\u0007my \uD83C\uDE00 ${bgGreen('website')}\u001B]8;;\u0007, it ${bgRed('is \u001B]8;;https://www.example.com\u0007super\uD83C\uDE00califragilisticexpialidocious\u001B]8;;\u0007')}.',
         16,
         hard: true);
     expect(result2,

@@ -38,7 +38,9 @@ scripts:
     env:
       MELOS_TEST: true
 
-  format: dart format -o write .
+  fix: dart fix --apply
+
+  format: dart format --fix .
 
   format-check:
     exec: dart format . --output=none --set-exit-if-changed
