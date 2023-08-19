@@ -3,9 +3,14 @@ import 'dart:io';
 import 'package:ansi/src/utils.dart';
 import 'package:ansi_codes/ansi_codes.dart';
 
+export 'src/extension.dart';
+export 'src/style.dart';
+
 ///
 /// Ansi class
 ///
+
+@Deprecated('Use style method or AnsiString extension instead')
 class Ansi {
   final bool supportAnsi;
 
@@ -96,6 +101,7 @@ class Ansi {
 /// Default ansi entry.
 /// Auto detect ansi support.
 ///
+@Deprecated('Use style method or AnsiString extension instead')
 final ansi = Ansi(
     supportAnsi:
         stdout.supportsAnsiEscapes && stdioType(stdout) == StdioType.terminal);

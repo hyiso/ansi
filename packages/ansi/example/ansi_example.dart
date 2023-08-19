@@ -1,8 +1,15 @@
 import 'package:ansi/ansi.dart';
 
 void main() {
-  print(ansi.blue('Hello world!'));
+  /// Use style method directly
+  print(blue('Hello world!'));
 
-  // Combine styled and normal strings
-  print(ansi.bgWhite('${ansi.blue('Hello')} World${ansi.red('!')}'));
+  /// Combine styled and normal strings
+  print(bgWhite('${blue('Hello')} World${red('!')}'));
+
+  /// Combine styled and normal strings
+  print(bgWhite('${blue('Hello')} World${red('!')}'));
+
+  /// Use extension method on String
+  print('extension method on String'.cyan());
 }
