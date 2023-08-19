@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-19
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`ansi` - `v0.3.0`](#ansi---v030)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `ansi` - `v0.3.0`
+
+ - **BREAKING** **FEAT**: export extension `AnsiString` and style methods, mark `Ansi` and `ansi` as Deprecated. ([48681db1](https://github.com/hyiso/ansi/commit/48681db1bc747b85a83a6cc13b8b49bd3665b3ec))
+
+
 ## 2023-03-22
 
 ### Changes

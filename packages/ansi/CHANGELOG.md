@@ -1,3 +1,9 @@
+## 0.3.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: export extension `AnsiString` and style methods, mark `Ansi` and `ansi` as Deprecated. ([48681db1](https://github.com/hyiso/ansi/commit/48681db1bc747b85a83a6cc13b8b49bd3665b3ec))
+
 ## 0.2.2
 
  - **FEAT**: format codes. ([c56d1d4d](https://github.com/hyiso/ansi/commit/c56d1d4d08a658743ba799b142a0f21298cab6c3))
