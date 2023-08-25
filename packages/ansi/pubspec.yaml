@@ -1,5 +1,5 @@
 name: ansi
-description: Terminal string styling done right.
+description: Terminal string styling done right with a number of builtin style functions.
 version: 0.3.0
 homepage: https://github.com/hyiso/ansi
 repository: https://github.com/hyiso/ansi/tree/main/packages/ansi
