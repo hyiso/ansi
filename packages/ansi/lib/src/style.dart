@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:ansi_codes/ansi_codes.dart';
 import 'utils.dart';
 
+bool get _isTest =>
+    Platform.script.path.split('/').last.startsWith('test.dart');
+
 bool get _supportAnsi =>
     stdout.supportsAnsiEscapes && stdioType(stdout) == StdioType.terminal;
 
@@ -133,7 +136,7 @@ String bgCyanBright(String text) => _style(text, ansiCodes.bgCyanBright);
 String bgWhiteBright(String text) => _style(text, ansiCodes.bgWhiteBright);
 
 String _style(String text, AnsiCode code) {
-  if (!_supportAnsi) return text;
+  if (!_supportAnsi && !_isTest) return text;
   if (text.contains('\u001B')) {
     text = stringReplaceAll(text, code.close, code.open);
   }
