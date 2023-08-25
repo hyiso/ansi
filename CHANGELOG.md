@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`ansi` - `v0.3.1`](#ansi---v031)
+
+---
+
+#### `ansi` - `v0.3.1`
+
+ - **FEAT**: pub.dev score. ([afdb52dc](https://github.com/hyiso/ansi/commit/afdb52dcad6c26706a037d1ae62fade7fb6026c9))
+
+
 ## 2023-08-19
 
 ### Changes

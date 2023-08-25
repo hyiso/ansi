@@ -1,3 +1,7 @@
+## 0.3.1
+
+ - **FEAT**: pub.dev score. ([afdb52dc](https://github.com/hyiso/ansi/commit/afdb52dcad6c26706a037d1ae62fade7fb6026c9))
+
 ## 0.3.0
 
 > Note: This release has breaking changes.
