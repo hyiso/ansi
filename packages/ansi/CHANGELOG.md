@@ -1,3 +1,7 @@
+## 0.3.2
+
+ - **FEAT**: support running in test. ([8824d598](https://github.com/hyiso/ansi/commit/8824d598d07b1ae2e8bc26fc1d304862e5ea7111))
+
 ## 0.3.1
 
  - **FEAT**: pub.dev score. ([afdb52dc](https://github.com/hyiso/ansi/commit/afdb52dcad6c26706a037d1ae62fade7fb6026c9))
