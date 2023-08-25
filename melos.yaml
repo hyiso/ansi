@@ -20,27 +20,23 @@ packages:
 scripts:
 
   analyze:
-    run: dart analyze . --fatal-infos
-    exec:
-      concurrency: 1
-    description: Run `dart analyze` for all packages.
+    exec: dart analyze . --fatal-infos
 
   test:
-    run: dart test --reporter expanded
-    exec:
-      concurrency: 1
-    description: Run `dart test` for specific packages in this project.
+    exec: dart test --reporter expanded
     packageFilters:
-      flutter: false
       dirExists: test
     # This tells Melos tests to ignore env variables passed to tests from `melos run test`
     # as they could change the behaviour of how tests filter packages.
     env:
-      MELOS_TEST: true
+      # MELOS_TEST: true
+      TERM: xterm
 
-  fix: dart fix --apply
+  fix:
+    exec: dart fix --apply
 
-  format: dart format --fix .
+  format:
+    exec: dart format --fix .
 
   format-check:
     exec: dart format . --output=none --set-exit-if-changed
