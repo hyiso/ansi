@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:ansi/src/utils.dart';
-import 'package:ansi_codes/ansi_codes.dart';
+import 'src/style.dart' as style;
 
 export 'src/extension.dart';
 export 'src/style.dart';
@@ -9,92 +8,56 @@ export 'src/style.dart';
 ///
 /// Ansi class
 ///
-
 @Deprecated('Use style method or AnsiString extension instead')
 class Ansi {
   final bool supportAnsi;
 
   Ansi({this.supportAnsi = true});
 
-  String reset(String text) => _style(text: text, code: ansiCodes.reset);
-  String bold(String text) => _style(text: text, code: ansiCodes.bold);
-  String dim(String text) => _style(text: text, code: ansiCodes.dim);
-  String italic(String text) => _style(text: text, code: ansiCodes.italic);
-  String underline(String text) =>
-      _style(text: text, code: ansiCodes.underline);
-  String inverse(String text) => _style(text: text, code: ansiCodes.inverse);
-  String hidden(String text) => _style(text: text, code: ansiCodes.hidden);
-  String strikeThrough(String text) =>
-      _style(text: text, code: ansiCodes.strikeThrough);
+  String reset(String text) => style.reset(text);
+  String bold(String text) => style.bold(text);
+  String dim(String text) => style.dim(text);
+  String italic(String text) => style.italic(text);
+  String underline(String text) => style.underline(text);
+  String inverse(String text) => style.inverse(text);
+  String hidden(String text) => style.hidden(text);
+  String strikeThrough(String text) => style.strikeThrough(text);
 
-  String black(String text) => _style(text: text, code: ansiCodes.black);
-  String red(String text) => _style(text: text, code: ansiCodes.red);
-  String green(String text) => _style(text: text, code: ansiCodes.green);
-  String yellow(String text) => _style(text: text, code: ansiCodes.yellow);
-  String blue(String text) => _style(text: text, code: ansiCodes.blue);
-  String magenta(String text) => _style(text: text, code: ansiCodes.magenta);
-  String cyan(String text) => _style(text: text, code: ansiCodes.cyan);
-  String white(String text) => _style(text: text, code: ansiCodes.white);
-  String blackBright(String text) =>
-      _style(text: text, code: ansiCodes.blackBright);
-  String redBright(String text) =>
-      _style(text: text, code: ansiCodes.redBright);
-  String greenBright(String text) =>
-      _style(text: text, code: ansiCodes.greenBright);
-  String yellowBright(String text) =>
-      _style(text: text, code: ansiCodes.yellowBright);
-  String blueBright(String text) =>
-      _style(text: text, code: ansiCodes.blueBright);
-  String magentaBright(String text) =>
-      _style(text: text, code: ansiCodes.magentaBright);
-  String cyanBright(String text) =>
-      _style(text: text, code: ansiCodes.cyanBright);
-  String whiteBright(String text) =>
-      _style(text: text, code: ansiCodes.whiteBright);
-  String grey(String text) => _style(text: text, code: ansiCodes.grey);
-  String gray(String text) => _style(text: text, code: ansiCodes.gray);
+  String black(String text) => style.black(text);
+  String red(String text) => style.red(text);
+  String green(String text) => style.green(text);
+  String yellow(String text) => style.yellow(text);
+  String blue(String text) => style.blue(text);
+  String magenta(String text) => style.magenta(text);
+  String cyan(String text) => style.cyan(text);
+  String white(String text) => style.white(text);
+  String blackBright(String text) => style.blackBright(text);
+  String redBright(String text) => style.redBright(text);
+  String greenBright(String text) => style.greenBright(text);
+  String yellowBright(String text) => style.yellowBright(text);
+  String blueBright(String text) => style.blueBright(text);
+  String magentaBright(String text) => style.magentaBright(text);
+  String cyanBright(String text) => style.cyanBright(text);
+  String whiteBright(String text) => style.whiteBright(text);
+  String grey(String text) => style.grey(text);
+  String gray(String text) => style.gray(text);
 
-  String bgBlack(String text) => _style(text: text, code: ansiCodes.bgBlack);
-  String bgRed(String text) => _style(text: text, code: ansiCodes.bgRed);
-  String bgGreen(String text) => _style(text: text, code: ansiCodes.bgGreen);
-  String bgYellow(String text) => _style(text: text, code: ansiCodes.bgYellow);
-  String bgBlue(String text) => _style(text: text, code: ansiCodes.bgBlue);
-  String bgMagenta(String text) =>
-      _style(text: text, code: ansiCodes.bgMagenta);
-  String bgCyan(String text) => _style(text: text, code: ansiCodes.bgCyan);
-  String bgWhite(String text) => _style(text: text, code: ansiCodes.bgWhite);
-  String bgBlackBright(String text) =>
-      _style(text: text, code: ansiCodes.bgBlackBright);
-  String bgRedBright(String text) =>
-      _style(text: text, code: ansiCodes.bgRedBright);
-  String bgGreenBright(String text) =>
-      _style(text: text, code: ansiCodes.bgGreenBright);
-  String bgYellowBright(String text) =>
-      _style(text: text, code: ansiCodes.bgYellowBright);
-  String bgBlueBright(String text) =>
-      _style(text: text, code: ansiCodes.bgBlueBright);
-  String bgMagentaBright(String text) =>
-      _style(text: text, code: ansiCodes.bgMagentaBright);
-  String bgCyanBright(String text) =>
-      _style(text: text, code: ansiCodes.bgCyanBright);
-  String bgWhiteBright(String text) =>
-      _style(text: text, code: ansiCodes.bgWhiteBright);
-
-  String _style({required String text, required AnsiCode code}) {
-    if (!supportAnsi) return text;
-    if (text.contains('\u001B')) {
-      text = stringReplaceAll(text, code.close, code.open);
-    }
-    int index = text.indexOf('\n');
-    if (index != -1) {
-      text = stringEncaseCRLFWithFirstIndex(text, code.close, code.open, index);
-    }
-    return [
-      code.open,
-      text,
-      code.close,
-    ].join('');
-  }
+  String bgBlack(String text) => style.bgBlack(text);
+  String bgRed(String text) => style.bgRed(text);
+  String bgGreen(String text) => style.bgGreen(text);
+  String bgYellow(String text) => style.bgYellow(text);
+  String bgBlue(String text) => style.bgBlue(text);
+  String bgMagenta(String text) => style.bgMagenta(text);
+  String bgCyan(String text) => style.bgCyan(text);
+  String bgWhite(String text) => style.bgWhite(text);
+  String bgBlackBright(String text) => style.bgBlackBright(text);
+  String bgRedBright(String text) => style.bgRedBright(text);
+  String bgGreenBright(String text) => style.bgGreenBright(text);
+  String bgYellowBright(String text) => style.bgYellowBright(text);
+  String bgBlueBright(String text) => style.bgBlueBright(text);
+  String bgMagentaBright(String text) => style.bgMagentaBright(text);
+  String bgCyanBright(String text) => style.bgCyanBright(text);
+  String bgWhiteBright(String text) => style.bgWhiteBright(text);
 }
 
 ///
