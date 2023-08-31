@@ -1,3 +1,10 @@
+## 0.4.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**: remove deprecated global instance `ansi`. ([ddc1068e](https://github.com/hyiso/ansi/commit/ddc1068e46c0c708a5b27808b145ab9d2b91fb51))
+ - **BREAKING** **FEAT**: make `ansi` a pure package. ([9a6f6e08](https://github.com/hyiso/ansi/commit/9a6f6e0853cf4ded0710601215b500b1b204735f))
+
 ## 0.3.2
 
  - **FEAT**: support running in test. ([8824d598](https://github.com/hyiso/ansi/commit/8824d598d07b1ae2e8bc26fc1d304862e5ea7111))

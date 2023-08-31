@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-31
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`ansi` - `v0.4.0`](#ansi---v040)
+
+Packages with other changes:
+
+ - There are no other changes in this release.
+
+---
+
+#### `ansi` - `v0.4.0`
+
+ - **BREAKING** **FEAT**: remove deprecated global instance `ansi`. ([ddc1068e](https://github.com/hyiso/ansi/commit/ddc1068e46c0c708a5b27808b145ab9d2b91fb51))
+ - **BREAKING** **FEAT**: make `ansi` a pure package. ([9a6f6e08](https://github.com/hyiso/ansi/commit/9a6f6e0853cf4ded0710601215b500b1b204735f))
+
+
 ## 2023-08-25
 
 ### Changes
