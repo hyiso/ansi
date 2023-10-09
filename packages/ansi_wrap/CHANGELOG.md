@@ -1,3 +1,7 @@
+## 0.1.2+2
+
+ - **DOCS**: change README. ([4856728b](https://github.com/hyiso/ansi/commit/4856728b579951ce4da7772ba0bab406c9341235))
+
 ## 0.1.2+1
 
  - Update a dependency to the latest release.

@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-10-09
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`ansi` - `v0.4.1`](#ansi---v041)
+ - [`ansi_slice` - `v0.1.1+1`](#ansi_slice---v0111)
+ - [`ansi_wrap` - `v0.1.2+2`](#ansi_wrap---v0122)
+
+---
+
+#### `ansi` - `v0.4.1`
+
+ - **FEAT**: make style apply to Object. ([0a657740](https://github.com/hyiso/ansi/commit/0a6577402c9ef46f4fa44404a3e1eb28dd9a87b8))
+
+#### `ansi_slice` - `v0.1.1+1`
+
+ - **DOCS**: change README. ([4856728b](https://github.com/hyiso/ansi/commit/4856728b579951ce4da7772ba0bab406c9341235))
+
+#### `ansi_wrap` - `v0.1.2+2`
+
+ - **DOCS**: change README. ([4856728b](https://github.com/hyiso/ansi/commit/4856728b579951ce4da7772ba0bab406c9341235))
+
+
 ## 2023-08-31
 
 ### Changes

@@ -1,3 +1,7 @@
+## 0.4.1
+
+ - **FEAT**: make style apply to Object. ([0a657740](https://github.com/hyiso/ansi/commit/0a6577402c9ef46f4fa44404a3e1eb28dd9a87b8))
+
 ## 0.4.0
 
 > Note: This release has breaking changes.
