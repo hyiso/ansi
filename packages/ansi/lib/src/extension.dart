@@ -1,6 +1,6 @@
 import 'style.dart' as style;
 
-extension AnsiString on String {
+extension AnsiString on Object {
   String reset() => style.reset(this);
   String bold() => style.bold(this);
   String dim() => style.dim(this);
