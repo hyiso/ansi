@@ -6,7 +6,7 @@ environment:
 dev_dependencies:
   commitlint_cli: ^0.7.0
   husky: ^0.1.6
-  lint_staged: ^0.4.1
+  lint_staged: ^0.5.0
   melos: ^3.0.0
 
 lint_staged:
